@@ -2,8 +2,8 @@ class CharacterSelection extends GameState {
 
      preload() {
           this.game.load.image("red_ball", "assets/sprites/red_ball.png");
-          this.game.load.image("blue_ball", "assets/sprites/red_ball.png");
-          this.game.load.image("purple_ball", "assets/sprites/red_ball.png");
+          this.game.load.image("blue_ball", "assets/sprites/blue_ball.png");
+          this.game.load.image("purple_ball", "assets/sprites/purple_ball.png");
           this.game.load.image("transp", "assets/sprites/transp.png");
           this.game.load.image("button", "assets/sprites/next.png");
      }
