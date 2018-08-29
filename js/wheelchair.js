@@ -2,6 +2,7 @@ class Wheelchair extends Phaser.Sprite{
     constructor(game, x, y, img) {
         super(game, x, y, img)
         // this.health = config.PLAYER_HEALTH
+        this.name = "Wheelchair"
         this.health = 3
         game.physics.arcade.enable(this)
         this.anchor.setTo(0.5, 0.5)

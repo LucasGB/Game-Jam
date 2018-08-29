@@ -7,11 +7,14 @@ class CharacterSelection extends GameState {
           this.game.load.image("transp", "assets/sprites/transp.png");
           this.game.load.image("button", "assets/sprites/next.png");
           this.game.load.image("play_button", "assets/sprites/botao_jogar.png");
+          this.game.load.spritesheet('wheelchair', 'assets/sprites/rpg_wheelchair_without_background1.png', 35, 54)
+          this.game.load.spritesheet('mage', 'assets/sprites/mage.png', 64, 64)
+          
      }
 
      create() {  
           this.current_char = 0
-          this.characters = ["red_ball", "blue_ball", "purple_ball"];
+          this.characters = ["wheelchair",'mage'];
           this.char_sprite = this.game.add.sprite(this.game.width/2, this.game.height/2 - 50, this.characters[this.current_char])
 
           this.game.stage.backgroundColor = "#000044"; 
