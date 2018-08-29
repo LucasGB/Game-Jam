@@ -9,7 +9,7 @@ class MainMenu extends GameState {
 
 	create(){
 		this.stage.backgroundColor = '#2d2d2d';
-		this.titleText = this.game.make.text(400, 100, "Oaoj Sacul", {
+		this.titleText = this.game.make.text(400, 100, "Teste", {
 	      font: 'bold 60pt TheMinion',
 	      fill: '#FDFFB5',
 	      align: 'center'
@@ -23,7 +23,7 @@ class MainMenu extends GameState {
     	this.game.add.existing(this.titleText);
 	
     	this.addMenuOption('Start', function () {
-      		this.game.state.start("Level1");
+      		this.game.state.start("LevelTeste");
     	});
     	this.addMenuOption('Options', function () {
       		this.game.state.start("Options");
