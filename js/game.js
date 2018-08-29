@@ -10,7 +10,10 @@ class Game extends Phaser.Game {
 
         // adiciona estados ao jogo        
         this.state.add('MainMenu', MainMenu, false)
-        this.state.add('Options', Options, false)
+        this.state.add('CharacterSelection', CharacterSelection, false)
+        this.state.add('CharSelection', CharSelection, false)
+
+        // this.state.add('Options', Options, false)
         this.state.add('Credits', Credits, false)
         this.state.add('Gameover', Gameover, false)
         this.state.start('MainMenu')
