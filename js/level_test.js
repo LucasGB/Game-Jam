@@ -5,15 +5,11 @@ class LevelTest extends GameState{
         this.game.load.tilemap('level1', 'assets/tilemaps/newMaps/mapBlind.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.spritesheet('mage', 'assets/sprites/mage.png', 64, 64)
         this.game.load.spritesheet('wheelchair', 'assets/sprites/rpg_wheelchair_without_background1.png', 35, 54)
-
-        
-        // this.game.load.video('Tiles Layer 1', 'assets/video/creditos.mp4');
     }
     
     create(){
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         this.createTileMap()
-        // this.game.add.image(0,0,'tiles2')
 
         if(this.game.CHOSEN_CHARACTER == 'mage'){
             this.player = new Mage(this.game, 100, 100, 'mage')
@@ -26,11 +22,6 @@ class LevelTest extends GameState{
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }
-
-        
-
-        
-
         console.log(this.game.CHOSEN_CHARACTER)
     }
 
@@ -59,82 +50,34 @@ class LevelTest extends GameState{
 
         this.mapLayer.resizeWorld()
         console.log("hello")
-        // this.map.setTileIndexCallback(29, this.hitObstacle, this)
-        // this.map.setTileIndexCallback(13, this.nextLevel, this)
-        // this.map.setCollision(13,true, 'Tiles Layer 1')             
-
         
-        // if(this.levelAtual == 1){
-        // this.obstacles = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 45, 'saw', 0, true, true, this.obstacles, Saw)
+    }
 
-        // this.coins = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 46, 'coin', 0, true, true, this.coins, Coin)
-
-        // this.spiders = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 50, 'spider', 0, true, true, this.spiders, Spider)
-        
-        // this.bats = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 55, 'bats', 0, true, true, this.bats, Bat)
-
-        // this.mapLayer.resizeWorld()
-        // }
-
-        // else if(this.levelAtual == 4){
-        // this.obstacles = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 50, 'saw', 0, true, true, this.obstacles, Saw)
-
-        // this.coins = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 51, 'coin', 0, true, true, this.coins, Coin)
-
-        // this.spiders = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 45, 'spider', 0, true, true, this.spiders, Spider)
-        
-        // this.bats = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 52, 'bats', 0, true, true, this.bats, Bat)
-        
-        // this.goblins = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 45, 'goblin', 0, true, true, this.goblins, Goblin)
-        
-        // this.oneEyed = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 60, 'bats', 0, true, true, this.oneEyed, OneEyed)
-
-
-        // this.mapLayer.resizeWorld()
-        // }
-
-        // else{
-        // this.obstacles = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 50, 'saw', 0, true, true, this.obstacles, Saw)
-
-        // this.coins = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 51, 'coin', 0, true, true, this.coins, Coin)
-
-        // this.spiders = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 45, 'spider', 0, true, true, this.spiders, Spider)
-        
-        // this.bats = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 55, 'bats', 0, true, true, this.bats, Bat)
-        
-        // this.goblins = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 71, 'goblin', 0, true, true, this.goblins, Goblin)
-        
-        // this.oneEyed = this.game.add.group()
-        // this.map.createFromObjects('Object Layer 1', 63, 'bats', 0, true, true, this.oneEyed, OneEyed)
-
-
-        // this.mapLayer.resizeWorld()
-        // }
-
-        
+    collideRamp(){
+        //this.mage.body.velocity.x += 0.5
+        this.mage.body.gravity.y = 0
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+            this.mage.position.y = this.player.position.y - 6
+        else
+            this.mage.position.y = this.player.position.y + 6
     }
 
     update(){
-        // this.game.physics.arcade.collide(this.mage, this.mapLayer);
-        this.game.physics.arcade.collide(this.player, this.mapLayer);
+        this.game.physics.arcade.collide(this.mage, this.mapLayer);
+
+        if(this.player.body.onFloor()){
+            this.player.body.gravity.y = 750
+        }
     }
 
     render(){
-        // this.game.debug.body(this.wheelchair)
+        this.debug()
     }
+
+    debug(){
+        this.game.debug.bodyInfo(this.mage, 32, 32);
+        this.game.debug.body(this.mage);
+        this.game.physics.arcade.collide(this.wheelchair, this.mapLayer);
+    }
+
 }
