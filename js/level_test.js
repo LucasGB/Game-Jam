@@ -10,6 +10,7 @@ class LevelTest extends GameState{
     }
     
     create(){
+<<<<<<< HEAD
         
         let skyWidth = this.game.cache.getImage('sky').width
         let skyHeight = this.game.cache.getImage('sky').height
@@ -21,6 +22,10 @@ class LevelTest extends GameState{
             
             this.game.physics.startSystem(Phaser.Physics.ARCADE)
             
+=======
+        this.flag = 0
+        this.game.physics.startSystem(Phaser.Physics.ARCADE)
+>>>>>>> 0cf2f677fefa0f040f4d5965dc49ab716c2e27f8
         this.createTileMap()
 
         if(this.game.CHOSEN_CHARACTER == 'mage'){
@@ -29,12 +34,16 @@ class LevelTest extends GameState{
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'wheelchair'){
+<<<<<<< HEAD
             this.player = new Wheelchair(this.game, 1500, 200, 'wheelchair')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'blind'){
             this.player = new Blind(this.game, 1500, 200, 'blind')
+=======
+            this.player = new Wheelchair(this.game, 2120, 200, 'wheelchair')
+>>>>>>> 0cf2f677fefa0f040f4d5965dc49ab716c2e27f8
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
@@ -60,25 +69,34 @@ class LevelTest extends GameState{
         this.map.setTileIndexCallback(270, this.touchFlag, this)
 
         this.mapLayer.resizeWorld()
-        console.log("hello")
-        
+    }
+
+    touchFlag(){
+
     }
 
     collideRamp(){
-        //this.mage.body.velocity.x += 0.5
-        this.player.body.gravity.y = 0
-        if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) )
+        this.player.canJump = false
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
             this.player.position.y = this.player.position.y - 6
         else
-            this.player.position.y = this.player.position.y + 6
+            this.player.position.y = this.player.position.y + 4
     }
 
     update(){
+        this.flag++
+
+        if(this.flag > 2){
+            this.player.body.gravity.y = 750
+            this.flag = 0
+        }
+
         this.game.physics.arcade.collide(this.player, this.mapLayer);
 
-        if(!this.player.body.onFloor()){
-            this.player.body.gravity.y = 750
-        }
+        if(this.player.body.onFloor())
+            this.player.canJump = true
+        else
+            this.player.canJump = false
     }
 
     render(){
@@ -87,8 +105,7 @@ class LevelTest extends GameState{
 
     debug(){
         this.game.debug.bodyInfo(this.player, 32, 32);
-        // this.game.debug.body(this.player);
-        // this.game.physics.arcade.collide(this.wheelchair, this.mapLayer);
+        this.game.debug.body(this.player);
     }
 
 }

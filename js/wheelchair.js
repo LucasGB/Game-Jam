@@ -19,6 +19,11 @@ class Wheelchair extends Phaser.Sprite{
         this.canWalk = true
         this.scale.x = 1.25
         this.scale.y = 1.25
+
+        this.canJump = true
+
+        this.X_VELOCITY = 300
+        this.Y_VELOCITY = 600
         
         this.cursors = {
             left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
@@ -88,25 +93,33 @@ class Wheelchair extends Phaser.Sprite{
                 this.scale.x = -1.25
                 this.scale.y = 1.25
                 this.animations.play('walk')
-                this.body.velocity.x = -300
+                
+                if(this.body.onFloor())
+                    this.X_VELOCITY = 300
+                else
+                    this.X_VELOCITY = 200
+                this.body.velocity.x = -this.X_VELOCITY
             }
             else if (this.cursors.right.isDown) {
                 this.scale.x = 1.25
                 this.scale.y = 1.25
                 this.animations.play('walk')
-                this.body.velocity.x = 300
+                if(this.body.onFloor())
+                    this.X_VELOCITY = 300
+                else
+                    this.X_VELOCITY = 200
+                this.body.velocity.x = this.X_VELOCITY
             }
             else{
                 this.animations.play('idle')
             }
             
-            if(this.cursors.up.isDown && this.body.onFloor()){
+            if(this.cursors.up.isDown && this.canJump){
                 this.animations.play('jump', 1, true)
-                this.body.velocity.y = -300
-                // this.sfx.jump.play()
-                
+                this.body.velocity.y = -this.Y_VELOCITY
+                // this.sfx.jump.play() 
             }
-        }else{
+        } else {
             this.animations.play('idle')
         }      
     }
@@ -130,14 +143,6 @@ class Wheelchair extends Phaser.Sprite{
     
 
     update() {
-        // this.move()
-        this.moveKeyboard()
-        // console.log(this.body.onFloor())
-        // console.log(this.body.blocked.right)
-        
-        // console.log(this.body.touching.down)
-        // this.debug.body()
-
-        
+        this.moveKeyboard()       
     }
 }
