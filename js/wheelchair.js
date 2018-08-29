@@ -114,11 +114,6 @@ class Wheelchair extends Phaser.Sprite{
                 this.animations.play('idle')
             }
             
-            if(this.cursors.up.isDown && this.canJump){
-                this.animations.play('jump', 1, true)
-                this.body.velocity.y = -this.Y_VELOCITY
-                // this.sfx.jump.play() 
-            }
         } else {
             this.animations.play('idle')
         }      

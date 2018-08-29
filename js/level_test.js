@@ -1,4 +1,4 @@
-class LevelTest extends GameState{
+class LevelBlind extends GameState{
     preload() {
         this.game.load.image('spritesheet_ground','assets/tilemaps/newTilesets/spritesheet_ground1.png');
         this.game.load.image('tileset','assets/tilemaps/newTilesets/tileset-42x42.png');
@@ -15,17 +15,17 @@ class LevelTest extends GameState{
         this.createTileMap()
 
         if(this.game.CHOSEN_CHARACTER == 'mage'){
-            this.player = new Mage(this.game, 1500,200, 'mage')
+            this.player = new Mage(this.game, 500,200, 'mage')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'wheelchair'){
-            this.player = new Wheelchair(this.game, 1500, 200, 'wheelchair')
+            this.player = new Wheelchair(this.game, 500, 200, 'wheelchair')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'blind'){
-            this.player = new Blind(this.game, 1500, 200, 'blind')
+            this.player = new Blind(this.game, 500, 200, 'blind')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
