@@ -1,4 +1,4 @@
-class Mage extends Phaser.Sprite {
+class Blind extends Phaser.Sprite {
     constructor(game, x, y, img) {
         super(game, x, y, img)
         // this.health = config.PLAYER_HEALTH
@@ -11,13 +11,13 @@ class Mage extends Phaser.Sprite {
         this.body.gravity.y = 750
         // this.body.allowGravity = true
         this.body.friction.setTo(0, 0)
-        this.body.setSize(23, 34, 20, 15)
+        this.body.setSize(56, 120, 0, 0)
         this.body.collideWorldBounds = true
         this.body.allowRotation = false
         this.coins = 0
         this.canWalk = true
-        this.scale.x = 1.25
-        this.scale.y = 1.25
+        this.scale.x = 0.50
+        this.scale.y = 0.50
         
         this.cursors = {
             left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
@@ -27,9 +27,9 @@ class Mage extends Phaser.Sprite {
             //fire: game.input.keyboard.addKey(keys.fire)
         }
         
-        this.animations.add('walk', [12,13,13,15,16,17,18,19], 20, true)
-        this.animations.add('die', [1,2,3,4,5], 4, false)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
-        this.animations.add('jump', [8,9,10,11], 1, false)                                                                                                                                       
+        this.animations.add('walk', [0,1,2,3], 20, true)
+        // this.animations.add('die', [1,2,3,4,5], 4, false)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        // this.animations.add('jump', [8,9,10,11], 1, false)                                                                                                                                       
         this.animations.add('idle', [0], 8, true)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         
 
@@ -69,14 +69,14 @@ class Mage extends Phaser.Sprite {
             this.body.velocity.x = 0            
             
             if (this.cursors.left.isDown) {
-                this.scale.x = -1.25
-                this.scale.y = 1.25
+                this.scale.x = -0.50
+                this.scale.y = 0.50
                 this.animations.play('walk')
                 this.body.velocity.x = -300
             }
             else if (this.cursors.right.isDown) {
-                this.scale.x = 1.25
-                this.scale.y = 1.25
+                this.scale.x = 0.50
+                this.scale.y = 0.50
                 this.animations.play('walk')
                 this.body.velocity.x = 300
             }
@@ -105,12 +105,6 @@ class Mage extends Phaser.Sprite {
         text.fixedToCamera = true
         return text
     }
-
-    gameOver() {
-        this.createText(this.game.width * 1 / 2, this.game.height * 1 / 2, 'GAME OVER', 50)
-        this.sfx.gameOver.play()
-    }
-    
     
 
     update() {
