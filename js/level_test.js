@@ -23,6 +23,8 @@ class LevelTest extends GameState{
         this.game.add.existing(this.wheelchair)
         this.game.camera.follow(this.wheelchair, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
         this.game.camera.atLimit.y = false
+
+        console.log(this.game.CHOSEN_CHARACTER)
     }
 
 
