@@ -3,6 +3,8 @@ class LevelTest extends GameState{
         this.game.load.image('spritesheet_ground','assets/tilemaps/newTilesets/spritesheet_ground1.png');
         this.game.load.tilemap('level1', 'assets/tilemaps/newMaps/map1-2.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.spritesheet('mage', 'assets/sprites/mage.png', 64, 64)
+        this.game.load.spritesheet('wheelchair', 'assets/sprites/rpg_wheelchair_without_background1.png', 35, 54)
+
         
         // this.game.load.video('Tiles Layer 1', 'assets/video/creditos.mp4');
     }
@@ -12,9 +14,14 @@ class LevelTest extends GameState{
         this.createTileMap()
         // this.game.add.image(0,0,'tiles2')
 
-        this.mage = new Mage(this.game, 200, 200, 'mage')
-        this.game.add.existing(this.mage)
-        this.game.camera.follow(this.mage, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
+        // this.mage = new Mage(this.game, 200, 200, 'mage')
+        // this.game.add.existing(this.mage)
+        // this.game.camera.follow(this.mage, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
+        // this.game.camera.atLimit.y = false
+
+        this.wheelchair = new Wheelchair(this.game, 200, 200, 'wheelchair')
+        this.game.add.existing(this.wheelchair)
+        this.game.camera.follow(this.wheelchair, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
         this.game.camera.atLimit.y = false
 
         console.log(this.game.CHOSEN_CHARACTER)
@@ -127,6 +134,7 @@ class LevelTest extends GameState{
     debug(){
         this.game.debug.bodyInfo(this.mage, 32, 32);
         this.game.debug.body(this.mage);
+        this.game.physics.arcade.collide(this.wheelchair, this.mapLayer);
     }
 
 }
