@@ -25,17 +25,6 @@ class LevelTest extends GameState{
         console.log(this.game.CHOSEN_CHARACTER)
     }
 
-    collideRampa(player){
-        if(player.name == "Wheelchair"){
-            console.log('rampa')
-        }
-    }
-
-    touchFlag(){
-        console.log("Flag")
-    }
-
-
     createTileMap() {
         // TODO implementar leitura do arquivo de tilemap e objetos
         this.map = this.game.add.tilemap('level1')
@@ -45,7 +34,7 @@ class LevelTest extends GameState{
         this.mapLayer = this.map.createLayer('Tiles Layer 1')
         this.map.setCollisionBetween(1, 66, true, 'Tiles Layer 1')
         this.map.setCollisionBetween(68, 128, true, 'Tiles Layer 1')
-        this.map.setTileIndexCallback(67, this.collideRampa, this)
+        this.map.setTileIndexCallback(67, this.collideRamp, this)
         this.map.setTileIndexCallback(270, this.touchFlag, this)
 
         this.mapLayer.resizeWorld()
@@ -55,11 +44,11 @@ class LevelTest extends GameState{
 
     collideRamp(){
         //this.mage.body.velocity.x += 0.5
-        this.mage.body.gravity.y = 0
+        this.player.body.gravity.y = 0
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
-            this.mage.position.y = this.player.position.y - 6
+            this.player.position.y = this.player.position.y - 6
         else
-            this.mage.position.y = this.player.position.y + 6
+            this.player.position.y = this.player.position.y + 6
     }
 
     update(){
