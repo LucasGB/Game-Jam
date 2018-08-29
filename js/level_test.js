@@ -10,22 +10,8 @@ class LevelTest extends GameState{
     }
     
     create(){
-<<<<<<< HEAD
-        
-        let skyWidth = this.game.cache.getImage('sky').width
-        let skyHeight = this.game.cache.getImage('sky').height
-        this.sky = this.game.add.tileSprite(
-            0, 0, skyWidth, skyHeight, 'sky')
-            this.sky.scale.x = this.game.width / this.sky.width
-            this.sky.scale.y = this.game.height / this.sky.height
-            this.sky.fixedToCamera = true
-            
-            this.game.physics.startSystem(Phaser.Physics.ARCADE)
-            
-=======
         this.flag = 0
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
->>>>>>> 0cf2f677fefa0f040f4d5965dc49ab716c2e27f8
         this.createTileMap()
 
         if(this.game.CHOSEN_CHARACTER == 'mage'){
@@ -34,16 +20,12 @@ class LevelTest extends GameState{
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'wheelchair'){
-<<<<<<< HEAD
             this.player = new Wheelchair(this.game, 1500, 200, 'wheelchair')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'blind'){
             this.player = new Blind(this.game, 1500, 200, 'blind')
-=======
-            this.player = new Wheelchair(this.game, 2120, 200, 'wheelchair')
->>>>>>> 0cf2f677fefa0f040f4d5965dc49ab716c2e27f8
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
