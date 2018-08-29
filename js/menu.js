@@ -23,7 +23,7 @@ class MainMenu extends GameState {
     	this.game.add.existing(this.titleText);
 	
     	this.addMenuOption('Start', function () {
-      		this.game.state.start("LevelTeste");
+      		this.game.state.start("CharacterSelection");
     	});
     	this.addMenuOption('Options', function () {
       		this.game.state.start("Options");
@@ -56,12 +56,7 @@ class MainMenu extends GameState {
 	    txt.events.onInputOut.add(onOut, this);
 	
 	    this.optionCount ++;
-
-
   	}
-
-
-
 }
 
 window.onload = function() {

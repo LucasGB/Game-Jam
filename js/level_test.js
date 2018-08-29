@@ -16,6 +16,8 @@ class LevelTest extends GameState{
         this.game.add.existing(this.mage)
         this.game.camera.follow(this.mage, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
         this.game.camera.atLimit.y = false
+
+        console.log(this.game.CHOSEN_CHARACTER)
     }
 
 

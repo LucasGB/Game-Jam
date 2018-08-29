@@ -64,7 +64,7 @@ class CharacterSelection extends GameState {
 
      play(){
           this.game.CHOSEN_CHARACTER = this.characters[this.current_char]
-          
+          this.state.start('LevelTeste')
      }
 
      render(){
@@ -75,7 +75,5 @@ class CharacterSelection extends GameState {
 
      update() {
           this.render()
-
-
      }
 }
