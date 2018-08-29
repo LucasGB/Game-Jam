@@ -12,12 +12,12 @@ class LevelTest extends GameState{
         this.createTileMap()
 
         if(this.game.CHOSEN_CHARACTER == 'mage'){
-            this.player = new Mage(this.game, 100, 100, 'mage')
+            this.player = new Mage(this.game, 500,200, 'mage')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'wheelchair'){
-            this.player = new Wheelchair(this.game, 100, 100, 'wheelchair')
+            this.player = new Wheelchair(this.game, 500, 200, 'wheelchair')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
@@ -63,7 +63,7 @@ class LevelTest extends GameState{
     }
 
     update(){
-        this.game.physics.arcade.collide(this.mage, this.mapLayer);
+        this.game.physics.arcade.collide(this.player, this.mapLayer);
 
         if(this.player.body.onFloor()){
             this.player.body.gravity.y = 750
@@ -75,9 +75,9 @@ class LevelTest extends GameState{
     }
 
     debug(){
-        this.game.debug.bodyInfo(this.mage, 32, 32);
-        this.game.debug.body(this.mage);
-        this.game.physics.arcade.collide(this.wheelchair, this.mapLayer);
+        this.game.debug.bodyInfo(this.player, 32, 32);
+        this.game.debug.body(this.player);
+        // this.game.physics.arcade.collide(this.wheelchair, this.mapLayer);
     }
 
 }
