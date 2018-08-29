@@ -82,7 +82,7 @@ class Mage extends Phaser.Sprite {
 
         if(this.canWalk){
         
-            this.body.velocity.x = 0
+            this.body.velocity.x = 0            
             
             if (this.cursors.left.isDown) {
                 this.scale.x = -1.25

@@ -27,7 +27,9 @@ class LevelTest extends GameState{
         this.map.addTilesetImage('spritesheet_ground')
 
         this.mapLayer = this.map.createLayer('Tiles Layer 1')
-        this.map.setCollisionBetween(1, 128, true, 'Tiles Layer 1')
+        this.map.setCollisionBetween(1, 32, true, 'Tiles Layer 1')
+        this.map.setCollisionBetween(34, 128, true, 'Tiles Layer 1')
+        this.map.setTileIndexCallback(33, this.collideRamp, this)
 
         this.mapLayer.resizeWorld()
         console.log("hello")
@@ -101,7 +103,30 @@ class LevelTest extends GameState{
         
     }
 
+    collideRamp(){
+        //this.mage.body.velocity.x += 0.5
+        this.mage.body.gravity.y = 0
+        if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+            this.mage.position.y = this.mage.position.y - 6
+        else
+            this.mage.position.y = this.mage.position.y + 6
+    }
+
     update(){
         this.game.physics.arcade.collide(this.mage, this.mapLayer);
+
+        if(this.mage.body.onFloor()){
+            this.mage.body.gravity.y = 750
+        }
     }
+
+    render(){
+        this.debug()
+    }
+
+    debug(){
+        this.game.debug.bodyInfo(this.mage, 32, 32);
+        this.game.debug.body(this.mage);
+    }
+
 }
