@@ -16,12 +16,12 @@ class LevelTest extends GameState{
         // this.game.add.image(0,0,'tiles2')
 
         if(this.game.CHOSEN_CHARACTER == 'mage'){
-            this.player = new Mage(this.game, 200, 200, 'mage')
+            this.player = new Mage(this.game, 100, 100, 'mage')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
         }else if(this.game.CHOSEN_CHARACTER == 'wheelchair'){
-            this.player = new Wheelchair(this.game, 200, 200, 'wheelchair')
+            this.player = new Wheelchair(this.game, 100, 100, 'wheelchair')
             this.game.add.existing(this.player)
             this.game.camera.follow(this.player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1)
             this.game.camera.atLimit.y = false
