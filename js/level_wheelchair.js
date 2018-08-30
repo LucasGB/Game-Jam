@@ -105,6 +105,17 @@ class LevelWheelchair extends GameState{
             this.player.canJump = true
         else
             this.player.canJump = false
+
+        if(this.game.input.keyboard.isDown(Phaser.Keyboard.ESC)){
+            this.game.levelAtual = this.game.levelAtual -1  
+            this.game.lives = this.game.lives - 1  
+            this.state.start("CharacterSelection")
+        }
+
+        if(this.player.position.y > 600){
+            this.game.lives--
+            this.game.state.start(this.game.state.current)
+        }
     }
 
     render(){
