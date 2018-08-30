@@ -66,6 +66,11 @@ class LevelBlind extends GameState{
     }
 
     update(){
+
+        if(this.player.position.x > 1250 && this.CHOSEN_CHARACTER != "blind"){
+            this.player.isAfraid = true
+        }
+
         this.flag++
 
         if(this.flag > 2){
@@ -79,6 +84,10 @@ class LevelBlind extends GameState{
             this.player.canJump = true
         else
             this.player.canJump = false
+
+        if(this.game.input.keyboard.isDown(Phaser.Keyboard.ESC)){
+                this.state.start("CharacterSelection")
+        }
     }
 
     render(){

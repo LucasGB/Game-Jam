@@ -21,6 +21,7 @@ class Wheelchair extends Phaser.Sprite{
         this.scale.y = 1.25
 
         this.canJump = true
+        this.isAfraid = false
 
         this.X_VELOCITY = 300
         this.Y_VELOCITY = 600
@@ -80,11 +81,25 @@ class Wheelchair extends Phaser.Sprite{
         
     }
     
+    run_away(){
+        this.animations.play('walk')
+        var run = this.game.add.tween(this).to({x: 1050 }, 500)
+        run.start()
+        this.isAfraid = false
+
+    }
+
     moveKeyboard() {
         if (!this.alive) {
             return
         }
 
+        if(this.isAfraid){
+            this.scale.x = -1.25            
+            this.run_away()
+
+        }
+        else {
         if(this.canWalk){
         
             this.body.velocity.x = 0
@@ -116,7 +131,8 @@ class Wheelchair extends Phaser.Sprite{
             
         } else {
             this.animations.play('idle')
-        }      
+        }    
+        }  
     }
 
     createText(x, y, string, size=16) {
