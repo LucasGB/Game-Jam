@@ -112,6 +112,11 @@ class LevelBlind extends GameState{
         if(this.game.input.keyboard.isDown(Phaser.Keyboard.ESC)){
                 this.state.start("CharacterSelection")
         }
+
+        if(this.player.position.y > 600){
+            this.game.lives--
+            this.game.state.start(this.game.state.current)
+        }
     }
 
     render(){
