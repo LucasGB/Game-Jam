@@ -39,7 +39,9 @@ class Gameover extends GameState {
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text.anchor.set(0.5);
     this.addMenuOption('Play Again', function (e) {
-      this.game.state.start("Level1");
+      this.game.levelAtual = -1
+			this.game.lives = 2
+      this.game.state.start("CharacterSelection");
     });
     this.world.resize(800, 600);
     this.addMenuOption('Main Menu', function (e) {

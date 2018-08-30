@@ -16,6 +16,7 @@ class Game extends Phaser.Game {
         // this.state.add('Options', Options, false)
         this.state.add('Credits', Credits, false)
         this.state.add('Gameover', Gameover, false)
+        this.state.add('Win', Win, false)
         this.state.add('LevelBlind', LevelBlind, false)
         this.state.add('LevelWheelchair', LevelWheelchair, false)
         this.state.start('MainMenu')

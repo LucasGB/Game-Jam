@@ -9,7 +9,7 @@ class MainMenu extends GameState {
 
 	create(){
 		this.stage.backgroundColor = '#2d2d2d';
-		this.titleText = this.game.make.text(400, 100, "Teste", {
+		this.titleText = this.game.make.text(400, 100, "Come toGuedes", {
 	      font: 'bold 60pt TheMinion',
 	      fill: '#FDFFB5',
 	      align: 'center'
@@ -23,11 +23,13 @@ class MainMenu extends GameState {
     	this.game.add.existing(this.titleText);
 	
     	this.addMenuOption('Start', function () {
-      		this.game.state.start("CharacterSelection");
+			this.game.levelAtual = -1
+			this.game.lives = 3  
+			this.game.state.start("CharacterSelection");
     	});
-    	this.addMenuOption('Options', function () {
-      		this.game.state.start("Options");
-    	});
+    	//this.addMenuOption('Options', function () {
+      	//	this.game.state.start("Options");
+    	//});
     	this.addMenuOption('Credits', function () {
       		this.game.state.start("Credits");
     	});

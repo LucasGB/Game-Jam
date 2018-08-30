@@ -88,9 +88,7 @@ class LevelWheelchair extends GameState{
         }
     }
 
-    touchFlag(){
-        console.log("flag")
-    }
+   
 
     createTileMap() {
         // TODO implementar leitura do arquivo de tilemap e objetos
@@ -112,7 +110,7 @@ class LevelWheelchair extends GameState{
     }
 
     touchFlag(){
-        this.state.start('CharacterSelection')
+        this.state.start('Win')
     }
 
     collideRamp(){
@@ -144,9 +142,14 @@ class LevelWheelchair extends GameState{
             this.state.start("CharacterSelection")
         }
 
-        if(this.player.position.y > 600){
+        if(this.player.position.y > 750){
             this.game.lives--
-            this.game.state.start(this.game.state.current)
+            if(this.game.lives <=0){
+                this.game.state.start('Gameover')
+            }else{
+                this.game.state.start(this.game.state.current)
+                console.log("bla")
+            }
         }
     }
 

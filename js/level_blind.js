@@ -152,7 +152,12 @@ class LevelBlind extends GameState{
 
         if(this.player.position.y > 600){
             this.game.lives--
-            this.game.state.start(this.game.state.current)
+            if(this.game.lives <=0){
+                this.state.start('Gameover')
+            }else{
+                this.game.state.start(this.game.state.current)
+                console.log("bla")
+            }
         }
     }
 
