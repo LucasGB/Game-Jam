@@ -12,6 +12,7 @@ class LevelBlind extends GameState{
         this.game.load.spritesheet('mage', 'assets/sprites/mage.png', 64, 64)
         this.game.load.spritesheet('wheelchair', 'assets/sprites/rpg_wheelchair_without_background1.png', 35, 54)
         this.game.load.spritesheet('blind', 'assets/sprites/blindguy.png', 56, 120)
+        this.game.load.image('heart','assets/sprites/heart.png', 10, 10)
     }
     
     create(){
@@ -37,7 +38,15 @@ class LevelBlind extends GameState{
         this.game.add.image(3400,265,'bush_large')
             
         this.createTileMap()
-            
+        // this.createHud()   
+        this.game.image = this.game.add.sprite(50, 50, 'heart')
+        this.game.image.scale.x = 0.15
+        this.game.image.scale.y = 0.15
+        this.game.image.anchor.set(0.5)
+        this.game.image.fixedToCamera = true; 
+        this.hud = {text1: this.createText(80, 50, ' x 3')}
+        this.updateHud()
+        
         if(this.game.CHOSEN_CHARACTER == 'mage'){
             this.player = new Mage(this.game, 500,200, 'mage')
             this.game.add.existing(this.player)
@@ -58,8 +67,30 @@ class LevelBlind extends GameState{
 
     }
 
-    touchFlag(){
-        console.log("flag")
+    // touchFlag(){
+    //     console.log("flag")
+    // }
+
+
+    createText(x, y, text, size=16, color='white') {
+        var style = { font: `bold ${size}px Arial`, fill: color}
+        var obj = this.game.add.text(x, y, text, style)
+        obj.stroke = '#000000'
+        obj.strokeThickness = 4
+        obj.anchor.setTo(0.5, 0.5)
+        obj.fixedToCamera = true
+        return obj
+    }
+
+    createHud(){
+        this.game.image = this.game.add.sprite(50, 50, 'heart')
+        this.game.image.scale.x = 0.15
+        this.game.image.scale.y = 0.15
+        this.game.image.anchor.set(0.5)
+        this.game.image.fixedToCamera = true;
+        this.game.hud = {
+            lives: this.createText(80, 50, ' x 3')
+        }
     }
 
     createTileMap() {
@@ -89,8 +120,12 @@ class LevelBlind extends GameState{
             this.player.position.y = this.player.position.y + 4
     }
 
-    update(){
+    updateHud() {
+        this.hud.text1.text = ` x: ${this.game.lives}`
+    }
 
+    update(){
+        
         if(this.player.position.x > 1250 && this.CHOSEN_CHARACTER != "blind"){
             this.player.isAfraid = true
         }
@@ -110,7 +145,9 @@ class LevelBlind extends GameState{
             this.player.canJump = false
 
         if(this.game.input.keyboard.isDown(Phaser.Keyboard.ESC)){
-                this.state.start("CharacterSelection")
+            this.game.levelAtual = this.game.levelAtual -1  
+            this.game.lives = this.game.lives - 1  
+            this.state.start("CharacterSelection")
         }
 
         if(this.player.position.y > 600){
@@ -120,12 +157,12 @@ class LevelBlind extends GameState{
     }
 
     render(){
-        this.debug()
+        //this.debug()
     }
 
     debug(){
-        this.game.debug.bodyInfo(this.player, 32, 32);
-        this.game.debug.body(this.player);
+        //this.game.debug.bodyInfo(this.player, 32, 32);
+        //this.game.debug.body(this.player);
     }
 
 }
