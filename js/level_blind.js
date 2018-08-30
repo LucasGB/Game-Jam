@@ -2,8 +2,13 @@ class LevelBlind extends GameState{
     preload() {
         this.game.load.image('spritesheet_ground','assets/tilemaps/newTilesets/spritesheet_ground1.png');
         this.game.load.image('tileset','assets/tilemaps/newTilesets/tileset-42x42.png');
-        this.game.load.image('sky','assets/images/stars.jpg');
-        this.game.load.tilemap('level1', 'assets/tilemaps/newMaps/mapBlind.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.image('tree1','assets/images/gothic/tree-1.png');
+        this.game.load.image('tree2','assets/images/gothic/tree-2.png');
+        this.game.load.image('statue','assets/images/gothic/statue.png');
+        this.game.load.image('bush_large','assets/images/gothic/bush-large.png');
+        this.game.load.image('bush_small','assets/images/gothic/bush-small.png');
+        this.game.load.image('sky','assets/images/gothic/background.png');
+        this.game.load.tilemap('levelBlind', 'assets/tilemaps/newMaps/mapBlind.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.spritesheet('mage', 'assets/sprites/mage.png', 64, 64)
         this.game.load.spritesheet('wheelchair', 'assets/sprites/rpg_wheelchair_without_background1.png', 35, 54)
         this.game.load.spritesheet('blind', 'assets/sprites/blindguy.png', 56, 120)
@@ -12,8 +17,27 @@ class LevelBlind extends GameState{
     create(){
         this.flag = 0
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
+             
+        let skyWidth = this.game.cache.getImage('sky').width
+        let skyHeight = this.game.cache.getImage('sky').height
+        this.sky = this.game.add.tileSprite(
+            0, 0, skyWidth, skyHeight, 'sky')
+        this.sky.scale.x = this.game.width / this.sky.width
+        this.sky.scale.y = this.game.height / this.sky.height
+        this.sky.fixedToCamera = true
+            
+        this.game.add.image(2100,220,'tree1')
+        this.game.add.image(2300,255,'statue')
+        this.game.add.image(2400,220,'tree2')
+        this.game.add.image(2700,265,'bush_large')
+        this.game.add.image(2800,220,'tree2')
+        this.game.add.image(2900,265,'bush_large')
+        this.game.add.image(3100,265,'bush_large')
+        this.game.add.image(3200,220,'tree1')
+        this.game.add.image(3400,265,'bush_large')
+            
         this.createTileMap()
-
+            
         if(this.game.CHOSEN_CHARACTER == 'mage'){
             this.player = new Mage(this.game, 500,200, 'mage')
             this.game.add.existing(this.player)
@@ -40,7 +64,7 @@ class LevelBlind extends GameState{
 
     createTileMap() {
         // TODO implementar leitura do arquivo de tilemap e objetos
-        this.map = this.game.add.tilemap('level1')
+        this.map = this.game.add.tilemap('levelBlind')
         this.map.addTilesetImage('spritesheet_ground')
         this.map.addTilesetImage('tileset')
 
@@ -54,7 +78,7 @@ class LevelBlind extends GameState{
     }
 
     touchFlag(){
-
+        this.state.start('CharacterSelection')
     }
 
     collideRamp(){
