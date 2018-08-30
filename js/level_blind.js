@@ -38,7 +38,15 @@ class LevelBlind extends GameState{
         this.game.add.image(3400,265,'bush_large')
             
         this.createTileMap()
-        this.createHud()    
+        // this.createHud()   
+        this.game.image = this.game.add.sprite(50, 50, 'heart')
+        this.game.image.scale.x = 0.15
+        this.game.image.scale.y = 0.15
+        this.game.image.anchor.set(0.5)
+        this.game.image.fixedToCamera = true; 
+        this.hud = {text1: this.createText(80, 50, ' x 3')}
+        this.updateHud()
+        
         if(this.game.CHOSEN_CHARACTER == 'mage'){
             this.player = new Mage(this.game, 500,200, 'mage')
             this.game.add.existing(this.player)
@@ -59,9 +67,9 @@ class LevelBlind extends GameState{
 
     }
 
-    touchFlag(){
-        console.log("flag")
-    }
+    // touchFlag(){
+    //     console.log("flag")
+    // }
 
 
     createText(x, y, text, size=16, color='white') {
@@ -113,7 +121,7 @@ class LevelBlind extends GameState{
     }
 
     updateHud() {
-        hud.lives.text = `LIVES: ${player1.health}`
+        this.hud.text1.text = ` x: ${this.game.lives}`
     }
 
     update(){
@@ -137,9 +145,12 @@ class LevelBlind extends GameState{
             this.player.canJump = false
 
         if(this.game.input.keyboard.isDown(Phaser.Keyboard.ESC)){
-            this.game.levelAtual = this.game.levelAtual -1    
+            this.game.levelAtual = this.game.levelAtual -1  
+            this.game.lives = this.game.lives - 1  
             this.state.start("CharacterSelection")
         }
+
+        // this.updateHud()
     }
 
     render(){
