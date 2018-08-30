@@ -112,8 +112,12 @@ class LevelBlind extends GameState{
             this.player.position.y = this.player.position.y + 4
     }
 
-    update(){
+    updateHud() {
+        hud.lives.text = `LIVES: ${player1.health}`
+    }
 
+    update(){
+        
         if(this.player.position.x > 1250 && this.CHOSEN_CHARACTER != "blind"){
             this.player.isAfraid = true
         }
