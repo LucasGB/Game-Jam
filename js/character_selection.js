@@ -18,7 +18,7 @@ class CharacterSelection extends GameState {
           this.level_name = ['LevelBlind','LevelWheelchair']
           this.game.levelAtual = this.game.levelAtual+1
           this.current_char = 0
-          this.characters = ["wheelchair",'mage', 'blind'];
+          this.characters = ["wheelchair", 'blind'];
           this.char_sprite = this.game.add.sprite(this.game.width/2, this.game.height/2 - 50, this.characters[this.current_char])
 
           this.game.stage.backgroundColor = "#000044"; 
