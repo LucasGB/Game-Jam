@@ -110,7 +110,8 @@ class LevelBlind extends GameState{
             this.player.canJump = false
 
         if(this.game.input.keyboard.isDown(Phaser.Keyboard.ESC)){
-                this.state.start("CharacterSelection")
+            this.game.levelAtual = this.game.levelAtual -1    
+            this.state.start("CharacterSelection")
         }
     }
 
