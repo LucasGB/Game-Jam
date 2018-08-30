@@ -72,13 +72,21 @@ class Blind extends Phaser.Sprite {
                 this.scale.x = -0.50
                 this.scale.y = 0.50
                 this.animations.play('walk')
-                this.body.velocity.x = -300
+                if(this.game.levelAtual != 1 ){
+                    this.body.velocity.x = -300
+                }else{
+                    this.body.velocity.x = -100
+                }
             }
             else if (this.cursors.right.isDown) {
                 this.scale.x = 0.50
                 this.scale.y = 0.50
                 this.animations.play('walk')
-                this.body.velocity.x = 300
+                if(this.game.levelAtual != 1 ){
+                    this.body.velocity.x = 300
+                }else{
+                    this.body.velocity.x = 100
+                }
             }
             else{
                 this.animations.play('idle')

@@ -1,4 +1,4 @@
-class Wheelchair extends Phaser.Sprite{
+class Wheelchair extends Phaser.Sprite {
     constructor(game, x, y, img) {
         super(game, x, y, img)
         // this.health = config.PLAYER_HEALTH
@@ -25,7 +25,7 @@ class Wheelchair extends Phaser.Sprite{
 
         this.X_VELOCITY = 300
         this.Y_VELOCITY = 600
-        
+
         this.cursors = {
             left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
             right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
@@ -33,11 +33,11 @@ class Wheelchair extends Phaser.Sprite{
             down: game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
             //fire: game.input.keyboard.addKey(keys.fire)
         }
-        
-        this.animations.add('walk', [0,1], 8, true)
+
+        this.animations.add('walk', [0, 1], 8, true)
         // this.animations.add('jump', [8,9,10,11], 1, false)                                                                                                                                       
-        this.animations.add('idle', [0], 8, true)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-        
+        this.animations.add('idle', [0], 8, true)
+
 
         // this.sfx = {
         //     jump: this.game.add.audio('sfx:jump'),
@@ -53,13 +53,13 @@ class Wheelchair extends Phaser.Sprite{
         // },this)
     }
 
-    
-    
+
+
     // die(){
     //     // this.body.enable = false
     //     // console.log("aeho")
     //     this.animations.play('die',4, false, true)       
-        
+
     // }
 
     bounce() {
@@ -67,19 +67,21 @@ class Wheelchair extends Phaser.Sprite{
     }
 
     jump() {
-        if(this.canWalk){        
+        if (this.canWalk) {
             if (!this.alive) {
                 return
             }
             if (this.body.touching.down || this.body.onFloor()) {
                 //if(this.cursors.up.isDown && this.body.onFloor()){
-                    this.body.velocity.y = -650
-                    this.sfx.jump.play()
-                    this.animations.play('die', 1, false)
+                this.body.velocity.y = -650
+                this.sfx.jump.play()
+                this.animations.play('die', 1, false)
             }
+        }
+
     }
         
-    }
+    
     
     run_away(){
         this.animations.play('walk')
@@ -101,15 +103,15 @@ class Wheelchair extends Phaser.Sprite{
         }
         else {
         if(this.canWalk){
-        
+
             this.body.velocity.x = 0
-            
+
             if (this.cursors.left.isDown) {
                 this.scale.x = -1.25
                 this.scale.y = 1.25
                 this.animations.play('walk')
-                
-                if(this.body.onFloor())
+
+                if (this.body.onFloor())
                     this.X_VELOCITY = 300
                 else
                     this.X_VELOCITY = 200
@@ -119,23 +121,25 @@ class Wheelchair extends Phaser.Sprite{
                 this.scale.x = 1.25
                 this.scale.y = 1.25
                 this.animations.play('walk')
-                if(this.body.onFloor())
+                if (this.body.onFloor())
                     this.X_VELOCITY = 300
                 else
                     this.X_VELOCITY = 200
                 this.body.velocity.x = this.X_VELOCITY
             }
-            else{
+            else {
                 this.animations.play('idle')
             }
-            
+
         } else {
             this.animations.play('idle')
         }    
         }  
-    }
 
-    createText(x, y, string, size=16) {
+        }
+
+
+    createText(x, y, string, size = 16) {
         let style = { font: `bold ${size}px Arial`, fill: 'white' }
         let text = this.game.add.text(x, y, string, style)
         //text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2)
@@ -150,10 +154,10 @@ class Wheelchair extends Phaser.Sprite{
         this.createText(this.game.width * 1 / 2, this.game.height * 1 / 2, 'GAME OVER', 50)
         this.sfx.gameOver.play()
     }
-    
-    
+
+
 
     update() {
-        this.moveKeyboard()       
+        this.moveKeyboard()
     }
 }

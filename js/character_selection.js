@@ -15,6 +15,8 @@ class CharacterSelection extends GameState {
      }
 
      create() {  
+          this.level_name = ['LevelBlind','LevelWheelchair']
+          this.game.levelAtual = this.game.levelAtual+1
           this.current_char = 0
           this.characters = ["wheelchair",'mage', 'blind'];
           this.char_sprite = this.game.add.sprite(this.game.width/2, this.game.height/2 - 50, this.characters[this.current_char])
@@ -69,7 +71,8 @@ class CharacterSelection extends GameState {
 
      play(){
           this.game.CHOSEN_CHARACTER = this.characters[this.current_char]
-          this.state.start('LevelBlind')
+          // this.state.start('levelWheelchair')
+          this.state.start(this.level_name[this.game.levelAtual])
      }
 
      render(){
